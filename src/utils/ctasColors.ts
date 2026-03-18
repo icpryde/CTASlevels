@@ -17,3 +17,12 @@ export const ctasHexColors: Record<CTASLevel, string> = {
   4: '#D4A017',
   5: '#2E8B57',
 };
+
+export const ctasBgTints: Record<CTASLevel, string> = {
+  0: 'rgba(26, 26, 26, 0.06)',
+  1: 'rgba(107, 45, 139, 0.07)',
+  2: 'rgba(215, 43, 43, 0.06)',
+  3: 'rgba(232, 117, 26, 0.06)',
+  4: 'rgba(212, 160, 23, 0.06)',
+  5: 'rgba(46, 139, 87, 0.06)',
+};

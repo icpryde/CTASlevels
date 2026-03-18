@@ -269,3 +269,36 @@ export const allSections: Section[] = [
   firstOrderModifiers,
   secondOrderModifiers,
 ];
+
+export interface LevelGroup {
+  categoryName: string;
+  sectionName: string;
+  entries: CTASEntry[];
+}
+
+export function getEntriesByLevel(): Record<number, LevelGroup[]> {
+  const result: Record<number, LevelGroup[]> = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+
+  for (const section of allSections) {
+    for (const category of section.categories) {
+      const byLevel: Record<number, CTASEntry[]> = {};
+      for (const entry of category.entries) {
+        if (entry.level === 0) continue;
+        if (!byLevel[entry.level]) byLevel[entry.level] = [];
+        byLevel[entry.level].push(entry);
+      }
+      for (const [lvl, entries] of Object.entries(byLevel)) {
+        const level = Number(lvl);
+        if (result[level]) {
+          result[level].push({
+            categoryName: category.name,
+            sectionName: section.name,
+            entries,
+          });
+        }
+      }
+    }
+  }
+
+  return result;
+}
