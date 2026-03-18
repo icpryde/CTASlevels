@@ -1,8 +1,9 @@
 const CACHE_NAME = 'ctas-ref-v1';
 
 self.addEventListener('install', (event) => {
+  const base = self.location.pathname.replace(/sw\.js$/, '');
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(['/']))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll([base, base + 'index.html']))
   );
   self.skipWaiting();
 });
