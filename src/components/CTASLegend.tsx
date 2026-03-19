@@ -51,8 +51,18 @@ export default function CTASLegend({ isOpen, onClose }: CTASLegendProps) {
             ))}
           </div>
 
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <p className="text-xs font-semibold text-gray-700 mb-2">Add to Home Screen</p>
+            <p className="text-[11px] text-gray-600 mb-1.5">
+              <strong>iPhone (Safari):</strong> Tap the Share button (square with arrow), then &quot;Add to Home Screen&quot;. Opens like an app and works offline.
+            </p>
+            <p className="text-[11px] text-gray-600">
+              <strong>Android (Chrome):</strong> Tap the menu (three dots), then &quot;Add to Home screen&quot; or &quot;Install app&quot;. Works offline after first load.
+            </p>
+          </div>
+
           <p className="text-[10px] text-gray-400 mt-4 leading-relaxed">
-            Referenced from "Prehospital CTAS Paramedic Guide Version 2.0: Adult" — Ontario Ministry of Health
+            Referenced from &quot;Prehospital CTAS Paramedic Guide Version 2.0: Adult&quot; — Ontario Ministry of Health
           </p>
         </div>
       </div>

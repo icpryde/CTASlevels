@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface CategoryIconProps {
   category: string;
   className?: string;
@@ -118,11 +120,22 @@ export default function CategoryIcon({ category, className = 'w-5 h-5' }: Catego
   const icon = icons[category];
   if (!icon) {
     return (
-      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 8v4M12 16h.01" />
-      </svg>
+      <span className={`inline-flex shrink-0 ${className}`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 8v4M12 16h.01" />
+        </svg>
+      </span>
     );
   }
-  return <span className={className}>{icon}</span>;
+  return (
+    <span className={`inline-flex items-center justify-center shrink-0 ${className}`}>
+      {React.isValidElement(icon)
+        ? React.cloneElement(icon as React.ReactElement<{ width?: string; height?: string }>, {
+            width: '100%',
+            height: '100%',
+          })
+        : icon}
+    </span>
+  );
 }

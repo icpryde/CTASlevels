@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import type { Category, CTASLevel } from '../data/ctasData';
+import type { Category } from '../data/ctasData';
 import CTASBadge from './CTASBadge';
 import CategoryIcon from './CategoryIcon';
-import { ctasHexColors, ctasBgTints } from '../utils/ctasColors';
+import { ctasHexColors } from '../utils/ctasColors';
 
 interface AccordionItemProps {
   category: Category;
@@ -10,32 +10,16 @@ interface AccordionItemProps {
   onToggle: () => void;
 }
 
-function getHighestLevel(category: Category): CTASLevel {
-  let highest: CTASLevel = 5;
-  for (const entry of category.entries) {
-    if (entry.level === 0) continue;
-    if (entry.level < highest) highest = entry.level;
-  }
-  return highest;
-}
-
 export default function AccordionItem({ category, isOpen, onToggle }: AccordionItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
-  const highestLevel = getHighestLevel(category);
-  const accentColor = ctasHexColors[highestLevel];
-  const bgTint = ctasBgTints[highestLevel];
 
   return (
-    <div
-      className="rounded-xl shadow-sm overflow-hidden"
-      style={{ borderLeft: `4px solid ${accentColor}` }}
-    >
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
       <button
         onClick={onToggle}
-        className="w-full flex items-center gap-3 px-4 py-3.5 text-left active:brightness-95 transition-all"
-        style={{ backgroundColor: isOpen ? bgTint : 'white' }}
+        className="w-full flex items-center gap-3 px-4 py-3.5 text-left active:bg-gray-50 transition-colors"
       >
-        <span className="text-gray-500" style={{ color: accentColor }}>
+        <span className="text-gray-600 shrink-0">
           <CategoryIcon category={category.name} className="w-5 h-5" />
         </span>
         <span className="font-semibold text-sm text-gray-900 flex-1">{category.name}</span>
@@ -51,7 +35,7 @@ export default function AccordionItem({ category, isOpen, onToggle }: AccordionI
       </button>
 
       <div
-        className="transition-[max-height] duration-300 ease-in-out overflow-hidden bg-white"
+        className="transition-[max-height] duration-300 ease-in-out overflow-hidden"
         style={{ maxHeight: isOpen ? (contentRef.current?.scrollHeight ?? 2000) : 0 }}
       >
         <div ref={contentRef}>

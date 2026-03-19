@@ -8,8 +8,6 @@ import AccordionGroup from './components/AccordionGroup';
 import SearchResults from './components/SearchResults';
 import CTASLegend from './components/CTASLegend';
 import ByLevelView from './components/ByLevelView';
-import AssessmentFlow from './components/AssessmentFlow';
-
 const TABS = [
   {
     label: 'Complaints',
@@ -63,7 +61,6 @@ export default function App() {
 
     return (
       <main className="flex-1 px-4 pb-8 pt-1">
-        {activeTab === 0 && <AssessmentFlow />}
         <AccordionGroup
           key={activeTab}
           categories={allSections[activeTab].categories}
